@@ -61,12 +61,20 @@ const getTransportObjectReadableName = (key) => {
 }
  
 app.get('/transport', (req, res) => {
-  const objects = Object.keys(transport).map(key => ({ key, readableName: getTransportObjectReadableName(key), emission: transport[key]}))
+  const objects = Object.keys(transport).map(key => ({
+    key,
+    readableName: getTransportObjectReadableName(key),
+    emission: parseFloat(transport[key])
+  }))
   res.json(objects)
 });
 
 app.get('/fashion', (req, res) => {
-  const objects = Object.keys(fashion).map(key => ({ key, readableName: getFashionObjectReadableName(key), emission: fashion[key]}))
+  const objects = Object.keys(fashion).map(key => ({
+    key,
+    readableName: getFashionObjectReadableName(key),
+    emission: parseFloat(fashion[key])
+  }))
   res.json(objects)
 });
 
