@@ -35,6 +35,8 @@ const getTransportObjectReadableName = (key) => {
       return 'Coche'
     case 'fossilFueledCar':
       return 'Coche de combustible fósil'
+    case 'electricVehicle':
+      return 'Coche eléctrico'
     case 'hybridCar':
       return 'Coche híbrido'
     case 'carSharing':
