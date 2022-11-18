@@ -25,6 +25,18 @@ const getFashionObjectReadableName = (key) => {
   }
 }
 
+const getTransportObjectMeasurements = (key) => {
+  switch (key) {
+    case 'plane':
+    case 'shortHaulFlight':
+    case 'mediumHaulFlight':
+    case 'longHaulFlight':
+      return 'hours'
+    default:
+      return 'distance'
+  }
+}
+
 const getTransportObjectReadableName = (key) => {
   switch (key) {
     case 'bus':
@@ -66,7 +78,8 @@ app.get('/transport', (req, res) => {
   const objects = Object.keys(transport).map(key => ({
     key,
     readableName: getTransportObjectReadableName(key),
-    emission: parseFloat(transport[key])
+    emission: parseFloat(transport[key]),
+    measurement: getTransportObjectMeasurements(key)
   }))
   res.json(objects)
 });
@@ -75,7 +88,8 @@ app.get('/fashion', (req, res) => {
   const objects = Object.keys(fashion).map(key => ({
     key,
     readableName: getFashionObjectReadableName(key),
-    emission: parseFloat(fashion[key])
+    emission: parseFloat(fashion[key]),
+    measurement: "items"
   }))
   res.json(objects)
 });
